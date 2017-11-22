@@ -9,7 +9,7 @@ package com.chaychan.buglydemo;
 public class BugClass {
 
     public static String getString(){
-        String str = "Bug had fixed!";
+        String str = null;
         int length = str.length();
         return str;
     }

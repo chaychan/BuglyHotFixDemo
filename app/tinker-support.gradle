@@ -5,7 +5,7 @@ def bakPath = file("${buildDir}/bakApk/")
 /**
  * 此处填写每次构建生成的基准包目录
  */
-def baseApkDir = "app-1121-11-36-06"
+def baseApkDir = "app-1122-14-34-59"
 
 /**
  * 对于插件各参数的详细解析请参考
@@ -83,19 +83,6 @@ tinkerPatch {
         //tinkerId = "1.0.1-base"
         //applyMapping = "${bakPath}/${appName}/app-release-mapping.txt" //  可选，设置mapping文件，建议保持旧apk的proguard混淆方式
         //applyResourceMapping = "${bakPath}/${appName}/app-release-R.txt" // 可选，设置R.txt文件，通过旧apk文件保持ResId的分配
-    }
-}
-
-//获取版本名
-def verName() {
-    def versionPropsFile = file("../version.properties")
-    if (versionPropsFile.canRead()) {
-        Properties versionProps = new Properties()
-        versionProps.load(new FileInputStream(versionPropsFile))
-
-        return versionProps['VERSION_NAME']
-    } else {
-        throw new GradleException("Could not read gradle.properties")
     }
 }
 

@@ -1,5 +1,32 @@
 apply plugin: 'com.android.application'
 
+//获取版本号
+def verCode() {
+    def versionPropsFile = file("../version.properties")
+    if (versionPropsFile.canRead()) {
+        Properties versionProps = new Properties()
+        versionProps.load(new FileInputStream(versionPropsFile))
+
+        def int verCode = versionProps['VERSION_CODE'].toInteger()
+        return verCode;
+    } else {
+        throw new GradleException("Could not read gradle.properties")
+    }
+}
+
+//获取版本名
+def verName() {
+    def versionPropsFile = file("../version.properties")
+    if (versionPropsFile.canRead()) {
+        Properties versionProps = new Properties()
+        versionProps.load(new FileInputStream(versionPropsFile))
+
+        return versionProps['VERSION_NAME']
+    } else {
+        throw new GradleException("Could not read gradle.properties")
+    }
+}
+
 android {
     compileSdkVersion 25
     buildToolsVersion "26.0.2"
@@ -7,8 +34,8 @@ android {
         applicationId "com.chaychan.buglydemo"
         minSdkVersion 16
         targetSdkVersion 25
-        versionCode 5
-        versionName "1.0.5"
+        versionCode verCode()
+        versionName verName()
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
